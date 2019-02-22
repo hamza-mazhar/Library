@@ -57,6 +57,17 @@ app.put("/api/genre/:id", (req, res) => {
   });
 });
 
+// delete genre
+app.delete("/api/genre/:id", (req, res) => {
+  var id = req.params.id;
+  Genres.removeGenreById(id, (err, genre) => {
+    if (err) {
+      throw err;
+    }
+    res.json(genre);
+  });
+});
+
 // get all books
 app.get("/api/books", (req, res) => {
   Books.getBooks((err, books) => {
@@ -81,6 +92,19 @@ app.post("/api/books", (req, res) => {
 // get book by id
 app.get("/api/book/:id", (req, res) => {
   Books.getBookById(req.params.id, (err, book) => {
+    if (err) {
+      throw err;
+    }
+    res.json(book);
+  });
+});
+
+// update book by id
+app.put("/api/book/:id", (req, res) => {
+  //console.log(req.params.id);
+  var id = req.params.id;
+  var book = req.body;
+  Genres.updateBookById(id, book, {}, (err, book) => {
     if (err) {
       throw err;
     }
