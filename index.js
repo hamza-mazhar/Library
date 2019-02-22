@@ -8,11 +8,14 @@ mongoose.connect(
   "mongodb://Library:hamza123@ds147125.mlab.com:47125/booklibrary"
 );
 
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 var db = mongoose.connection;
 app.get("/", (req, res) => {
   res.send("Test this world");
 });
 
+//for genres
 app.get("/api/genres", (req, res) => {
   Genres.getGenres((err, genres) => {
     if (err) {
@@ -21,24 +24,67 @@ app.get("/api/genres", (req, res) => {
     res.json(genres);
   });
 });
+// create genres
+app.post("/api/genres", function(req, res) {
+  var genre = req.body;
+  Genres.addGenre(genre, (err, genre) => {
+    if (err) {
+      throw err;
+    }
+    res.json(genre);
+  });
+});
+// get genres by id
+app.get("/api/genre/:id", (req, res) => {
+  Genres.getGenreById(req.params.id, (err, genre) => {
+    if (err) {
+      throw err;
+    }
+    res.json(genre);
+  });
+});
 
+// update genre by id
+app.put("/api/genre/:id", (req, res) => {
+  console.log(req.params.id);
+  var id = req.params.id;
+  var genre = req.body;
+  Genres.updateGenreById(id, genre, {}, (err, genre) => {
+    if (err) {
+      throw err;
+    }
+    res.json(genre);
+  });
+});
+
+// get all books
 app.get("/api/books", (req, res) => {
   Books.getBooks((err, books) => {
     if (err) {
       throw err;
     }
-    //console.log(books);
-    res.send(books);
+    res.json(books);
   });
 });
 
+// add new book
+app.post("/api/books", (req, res) => {
+  var book = req.body;
+  Books.addBook(book, (err, book) => {
+    if (err) {
+      throw err;
+    }
+    res.json(book);
+  });
+});
+
+// get book by id
 app.get("/api/book/:id", (req, res) => {
   Books.getBookById(req.params.id, (err, book) => {
     if (err) {
       throw err;
     }
-    console.log(book);
-    res.send(book);
+    res.json(book);
   });
 });
 

@@ -41,7 +41,12 @@ module.exports.getBooks = (callback, limit) => {
   Book.find(callback).limit(limit);
 };
 // get single
+module.exports.getBookById = (id, callback) => {
+  Book.findById(id, callback);
+};
 
-// module.exports.getBookById = (id, callback) => {
-//   Book.findById(id, callback);
-// };
+// create a new book
+module.exports.addBook = (book, callback) => {
+  console.log(book);
+  Book.create(book, callback);
+};
