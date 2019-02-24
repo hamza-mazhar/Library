@@ -112,6 +112,17 @@ app.put("/api/book/:id", (req, res) => {
   });
 });
 
+// delete book
+app.delete("/api/book/:id", (req, res) => {
+  var id = req.params.id;
+  Genres.removeBookById(id, (err, genre) => {
+    if (err) {
+      throw err;
+    }
+    res.json(genre);
+  });
+});
+
 app.listen(8080, () => {
   console.log("App is listening at 8080");
 });
