@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Card } from "antd";
 import styled from "styled-components";
+import "./welcome.css";
 
 const CardText = styled.div`
   width: 600px;
@@ -24,16 +25,12 @@ const CardHeading = styled.div`
   margin-bottom: 20px;
   text-align: center;
 `;
-const VideoContent = styled.div`
-  width: 100%;
-  margin-top: 10px;
-  padding: 0;
-`;
 
 class welcome extends Component {
   render() {
     const settings = {
       dots: true,
+      arrows: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
@@ -46,24 +43,28 @@ class welcome extends Component {
           <div>
             <img
               style={{ width: "100%", height: "400px" }}
+              alt=""
               src="http://shineclassifieds.com/account/upload/dispay//15439022215c06140d0f666.jpg"
             />
           </div>
           <div>
             <img
               style={{ width: "100%", height: "400px" }}
+              alt=""
               src="https://zegaea.com/img/EB/Fashion/ECS/CA/ECS%20shopbanner.jpg"
             />
           </div>
           <div>
             <img
               style={{ width: "100%", height: "400px" }}
+              alt=""
               src="https://sweeps.penguinrandomhouse.com/sweep_assets/2451/hero0_1507920530676.jpg?time=1507920531373"
             />
           </div>
           <div>
             <img
               style={{ width: "100%", height: "400px" }}
+              alt=""
               src="http://images6.fanpop.com/image/photos/40600000/Book-Banner-Header-booknerd-40619463-950-323.jpg"
             />
           </div>
@@ -96,7 +97,6 @@ class welcome extends Component {
             />
           }
         />
-        <br />
         <Card
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
           bordered={false}
