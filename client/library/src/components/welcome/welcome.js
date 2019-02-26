@@ -90,7 +90,7 @@ class welcome extends Component {
             <iframe
               width="100%"
               height="409"
-              src="https://www.youtube.com/embed/nw59Nt5Hqhc?autoplay=1"
+              src="https://www.youtube.com/embed/nw59Nt5Hqhc?autoplay=1&mute=1"
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
