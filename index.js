@@ -104,7 +104,7 @@ app.put("/api/book/:id", (req, res) => {
   //console.log(req.params.id);
   var id = req.params.id;
   var book = req.body;
-  Genres.updateBookById(id, book, {}, (err, book) => {
+  Books.updateBookById(id, book, {}, (err, book) => {
     if (err) {
       throw err;
     }

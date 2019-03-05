@@ -24,7 +24,7 @@ class Navbar extends React.Component {
           <Menu
             theme="dark"
             mode="horizontal"
-            style={{ lineHeight: "64px", textAlign: "right" }}
+            style={{ lineHeight: "54px", textAlign: "right" }}
           >
             <Menu.Item key="9">
               <Link to="/">Home</Link>
@@ -44,13 +44,16 @@ class Navbar extends React.Component {
           <Menu
             theme="dark"
             mode="horizontal"
-            style={{ lineHeight: "64px", textAlign: "right" }}
+            style={{ lineHeight: "54px", textAlign: "right" }}
           >
             <Menu.Item key="9">
               <Link to="/">Home</Link>
             </Menu.Item>
             <Menu.Item key="8">
               <Oauth>Login</Oauth>
+            </Menu.Item>
+            <Menu.Item key="10">
+              <Link to="/books">Books</Link>
             </Menu.Item>
           </Menu>
         </Header>

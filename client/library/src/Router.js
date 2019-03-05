@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Welcome from "./components/welcome";
-
+import BookList from "./components/Books";
 function isUserLoggedIn() {
   return localStorage.getItem("login") === "true" ? true : false;
 }
@@ -14,6 +14,7 @@ class Router extends React.Component {
       return (
         <Switch>
           <Route exact path="/" component={Welcome} />
+          <Route exact path="/books" component={BookList} />
         </Switch>
       );
     }
