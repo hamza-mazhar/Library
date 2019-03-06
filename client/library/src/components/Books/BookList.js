@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Card, Row, Col, Button, message } from "antd";
+import { Card, Row, Col, Button, message, Icon } from "antd";
+import { Link } from "react-router-dom";
 const { Meta } = Card;
+
+const NewBookButton = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+`;
+
 class BookList extends Component {
   constructor(props) {
     super(props);
@@ -29,12 +36,23 @@ class BookList extends Component {
     const data = this.state.data;
     return (
       <div style={{ background: "#ECECEC", padding: "30px" }}>
+        <NewBookButton>
+          <Link to="/newBook">
+            <Button type="primary" icon="plus">
+              New Book
+            </Button>
+          </Link>
+        </NewBookButton>
+        <br />
         <Row gutter={16}>
           {data.map(item => {
             return (
               <Col
                 span={5}
-                style={{ paddingLeft: 2, paddingRight: 2, width: "20%" }}
+                style={{
+                  width: "20%",
+                  marginTop: "20px"
+                }}
               >
                 <Card
                   hoverable
