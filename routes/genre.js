@@ -2,12 +2,11 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Genre = require("../models/genre");
-const jwt = require("jsonwebtoken");
-var bcrypt = require("bcrypt");
+const checkAuth = require("../middleware/check-auth");
 
 //const checkAuth = require("./middleware/check-auth");
 //get genre /api/genres
-router.get("/genres", (req, res, next) => {
+router.get("/genres", checkAuth, (req, res, next) => {
   Genre.find()
     .then(result => {
       res.send(result);
@@ -20,7 +19,7 @@ router.get("/genres", (req, res, next) => {
 });
 
 // get genres by id
-router.get("/genre/:id", (req, res) => {
+router.get("/genre/:id", checkAuth, (req, res) => {
   Genre.findById(req.params.id)
     .exec()
     .then((result, err) => {
@@ -39,7 +38,7 @@ router.get("/genre/:id", (req, res) => {
 });
 
 // create genres
-router.post("/genres", (req, res) => {
+router.post("/genres", checkAuth, (req, res) => {
   Genre.find({ name: req.body.name })
     .exec()
     .then(genre => {
@@ -71,7 +70,7 @@ router.post("/genres", (req, res) => {
 });
 
 // update genre by id
-router.put("/genre/:id", (req, res) => {
+router.put("/genre/:id", checkAuth, (req, res) => {
   var query = { _id: req.params.id };
   var update = {
     name: req.body.name
@@ -94,7 +93,7 @@ router.put("/genre/:id", (req, res) => {
 });
 
 //deleted the genre by id
-router.delete("/genre/:id", (req, res, next) => {
+router.delete("/genre/:id", checkAuth, (req, res, next) => {
   Genres.remove({ _id: req.params.id })
     .exec()
     .then(result => {

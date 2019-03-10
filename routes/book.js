@@ -2,12 +2,10 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Book = require("../models/book");
-const jwt = require("jsonwebtoken");
-var bcrypt = require("bcrypt");
 
-//const checkAuth = require("./middleware/check-auth");
+const checkAuth = require("../middleware/check-auth");
 //get all books /api/books
-router.get("/books", (req, res, next) => {
+router.get("/books", checkAuth, (req, res, next) => {
   Book.find()
     .then(result => {
       res.send(result);
@@ -20,7 +18,7 @@ router.get("/books", (req, res, next) => {
 });
 
 // get book by id
-router.get("/book/:id", (req, res) => {
+router.get("/book/:id", checkAuth, (req, res) => {
   Book.findById(req.params.id)
     .exec()
     .then((result, err) => {
@@ -39,7 +37,7 @@ router.get("/book/:id", (req, res) => {
 });
 
 // create book
-router.post("/book", (req, res) => {
+router.post("/book", checkAuth, (req, res) => {
   Book.find({ title: req.body.title })
     .exec()
     .then(genre => {
@@ -78,7 +76,7 @@ router.post("/book", (req, res) => {
 });
 
 // update book by id
-router.put("/book/:id", (req, res) => {
+router.put("/book/:id", checkAuth, (req, res) => {
   var query = { _id: req.params.id };
   var update = {
     title: req.body.title,
@@ -107,7 +105,7 @@ router.put("/book/:id", (req, res) => {
 });
 
 //deleted the book by id
-router.delete("/book/:id", (req, res, next) => {
+router.delete("/book/:id", checkAuth, (req, res, next) => {
   Book.remove({ _id: req.params.id })
     .exec()
     .then(result => {
