@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Card, Row, Col, Button, message, Icon } from "antd";
+import { Card, Row, Col, Button, message } from "antd";
 import { Link } from "react-router-dom";
 const { Meta } = Card;
 
@@ -26,7 +26,7 @@ class BookList extends Component {
           this.setState({ data: response.data });
         }
       })
-      .catch(function(error) {
+      .catch(error => {
         message.error("Something Went Wrong!");
         this.setState({ data: [] });
       });
