@@ -16,8 +16,6 @@ class Router extends React.Component {
       return (
         <Switch>
           <Route exact path="/" component={Welcome} />
-          <Route exact path="/books" component={BookList} />
-          <Route exact path="/newBook" component={CreateBook} />
           <Route exact path="/login" component={Login} />
         </Switch>
       );
@@ -26,6 +24,8 @@ class Router extends React.Component {
       return (
         <div>
           <Route exact path="/" component={Welcome} />
+          <Route exact path="/books" component={BookList} />
+          <Route exact path="/newBook" component={CreateBook} />
         </div>
       );
   }

@@ -30,7 +30,10 @@ class Navbar extends React.Component {
               <Link to="/">Home</Link>
             </Menu.Item>
             <Menu.Item key="10">
-              <Logout>logout</Logout>
+              <Link to="/books">Books</Link>
+            </Menu.Item>
+            <Menu.Item key="11">
+              <Logout>Logout</Logout>
             </Menu.Item>
           </Menu>
         </Header>
@@ -49,11 +52,11 @@ class Navbar extends React.Component {
             <Menu.Item key="9">
               <Link to="/">Home</Link>
             </Menu.Item>
-            <Menu.Item key="8">
+            {/* <Menu.Item key="8">
               <Oauth>Login</Oauth>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item key="10">
-              <Link to="/books">Books</Link>
+              <Link to="/Login">Login</Link>
             </Menu.Item>
           </Menu>
         </Header>

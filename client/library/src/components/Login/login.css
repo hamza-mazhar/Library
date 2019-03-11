@@ -6,3 +6,7 @@
 .login-form-button {
   width: 100%;
 }
+
+.ant-form-item-control-wrapper {
+  width: 100%;
+}

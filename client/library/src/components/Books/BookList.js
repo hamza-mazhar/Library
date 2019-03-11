@@ -18,10 +18,18 @@ class BookList extends Component {
     };
   }
   componentDidMount() {
-    axios
-      .get("/api/books")
+    //console.log(localStorage.getItem("token"));
+    axios({
+      method: "get",
+      url: "/api/books",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        authorization: localStorage.getItem("token")
+      }
+    })
+      // .get("/api/books")
       .then(response => {
-        console.log(response);
+        //console.log(response);
         if (response.data) {
           this.setState({ data: response.data });
         }

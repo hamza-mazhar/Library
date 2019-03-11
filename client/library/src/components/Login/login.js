@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Card, Input, Icon, Checkbox } from "antd";
+import { Button, Form, Card, Input, Icon, Checkbox, message } from "antd";
 import axios from "axios";
 import styled from "styled-components";
 import "./login.css";
@@ -12,6 +12,36 @@ class login extends Component {
     };
   }
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        //console.log("Received values of form: ", values);
+        axios({
+          method: "post",
+          url: "/user/login",
+          data: {
+            email: values.email,
+            password: values.password
+          }
+        })
+          .then((req, res) => {
+            //console.log(req);
+            this.setState({ login: true });
+            localStorage.setItem("token", "Bearer " + req.data.token);
+            localStorage.setItem("login", this.state.login);
+            message.success("Successful Login!");
+            window.location.replace("/");
+          })
+          .catch(err => {
+            this.setState({ login: false });
+            localStorage.setItem("login", this.state.login);
+            message.error("Invalid Email or Password!");
+          });
+      }
+    });
+  };
+
   render() {
     const { getFieldDecorator } = this.props.form;
 
@@ -21,6 +51,8 @@ class login extends Component {
           style={{
             paddingTop: "5%",
             paddingBottom: "5%",
+            paddingLeft: "35%",
+            paddingRight: "35%",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundImage: `url(https://goodstock.photos/wp-content/uploads/laptop-devices-wooden-desk.jpg)`
@@ -37,19 +69,23 @@ class login extends Component {
           >
             <Form onSubmit={this.handleSubmit} className="login-form">
               <Form.Item>
-                {getFieldDecorator("userName", {
+                {getFieldDecorator("email", {
                   rules: [
-                    { required: true, message: "Please input your username!" }
+                    {
+                      required: true,
+                      type: "email",
+                      message: "Please input your Email!"
+                    }
                   ]
                 })(
                   <Input
                     prefix={
                       <Icon
-                        type="user"
+                        type="mail"
                         style={{ color: "rgba(255,255,255,.25)" }}
                       />
                     }
-                    placeholder="Username"
+                    placeholder="Email"
                   />
                 )}
               </Form.Item>
