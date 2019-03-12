@@ -14,11 +14,13 @@ class BookList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      loading: true
     };
   }
   componentDidMount() {
     //console.log(localStorage.getItem("token"));
+    this.setState({ loading: true });
     axios({
       method: "get",
       url: "/api/books",
@@ -31,12 +33,12 @@ class BookList extends Component {
       .then(response => {
         //console.log(response);
         if (response.data) {
-          this.setState({ data: response.data });
+          this.setState({ data: response.data, loading: false });
         }
       })
       .catch(error => {
         message.error("Something Went Wrong!");
-        this.setState({ data: [] });
+        this.setState({ data: [], loading: false });
       });
   }
 
@@ -58,23 +60,28 @@ class BookList extends Component {
               <Col
                 span={5}
                 style={{
-                  width: "20%",
+                  width: "16%",
                   marginTop: "20px"
                 }}
+                key={`${item._id}`}
               >
-                <Card
-                  hoverable
-                  style={{ width: 240 }}
-                  cover={
-                    <img
-                      alt="example"
-                      src={item.image_url}
-                      style={{ height: 238, width: "100%" }}
-                    />
-                  }
-                >
-                  <Meta title={item.title} description={item.genres} />
-                </Card>
+                <Link to={`/book/${item._id}`}>
+                  <Card
+                    key={`${item._id}`}
+                    hoverable
+                    loading={this.state.loading}
+                    style={{ width: 210 }}
+                    cover={
+                      <img
+                        alt="example"
+                        src={item.image_url}
+                        style={{ height: 210, width: "100%" }}
+                      />
+                    }
+                  >
+                    <Meta title={item.title} description={item.genres} />
+                  </Card>
+                </Link>
               </Col>
             );
           })}

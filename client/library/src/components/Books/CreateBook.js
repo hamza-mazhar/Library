@@ -18,7 +18,11 @@ class CreateBook extends Component {
         console.log("Received values of form: ", values);
         axios({
           method: "post",
-          url: "/api/books",
+          url: "/api/book",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("token")
+          },
           data: {
             title: values.title,
             author: values.author,
@@ -33,10 +37,11 @@ class CreateBook extends Component {
           .then(response => {
             if (response.data) {
               message.success("Successfully Added!");
+              window.location.replace("/books");
             }
           })
           .catch(function(error) {
-            message.error("Something Went Wrong!");
+            message.error("Already Exists");
             this.setState({ data: [] });
           });
       }

@@ -3,6 +3,7 @@ import { Button, Form, Card, Input, Icon, Checkbox, message } from "antd";
 import axios from "axios";
 import styled from "styled-components";
 import "./login.css";
+import Background from "../images/loginForm.jpg";
 const LoginForm = styled.div``;
 class login extends Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class login extends Component {
             paddingRight: "35%",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            backgroundImage: `url(https://goodstock.photos/wp-content/uploads/laptop-devices-wooden-desk.jpg)`
+            backgroundImage: `url(${Background})`
           }}
         >
           <Card

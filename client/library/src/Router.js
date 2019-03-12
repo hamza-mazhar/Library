@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Welcome from "./components/welcome";
 import BookList from "./components/Books";
 import CreateBook from "./components/Books/CreateBook";
+import BookById from "./components/Books/BookDetail";
 import Login from "./components/Login";
 function isUserLoggedIn() {
   return localStorage.getItem("login") === "true" ? true : false;
@@ -26,6 +27,7 @@ class Router extends React.Component {
           <Route exact path="/" component={Welcome} />
           <Route exact path="/books" component={BookList} />
           <Route exact path="/newBook" component={CreateBook} />
+          <Route exact path="/book/:id" component={BookById} />
         </div>
       );
   }

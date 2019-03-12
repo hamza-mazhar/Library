@@ -14,7 +14,11 @@ class Logout extends Component {
       <div>
         <Button
           onClick={this.logout}
-          style={{ background: "transparent", border: "none" }}
+          style={{
+            background: "transparent",
+            border: "none",
+            color: "inherit"
+          }}
         >
           Logout
         </Button>
