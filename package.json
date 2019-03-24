@@ -17,7 +17,8 @@
     "body-parser": "*",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.0",
-    "mongoose": "*"
+    "mongoose": "*",
+    "react-image-magnifier-lens": "^1.1.9"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"

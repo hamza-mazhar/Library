@@ -1,7 +1,36 @@
 import React, { Component } from "react";
 import { message, Card, Button } from "antd";
 import axios from "axios";
+import styled from "styled-components";
 
+const BodyContainer = styled.div`
+  display: flex;
+`;
+const BookImage = styled.div`
+  color: white;
+`;
+const AuthorName = styled.div`
+  color: white;
+  font-weight: 500;
+`;
+const BookDesc = styled.div`
+  color: white;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: sans-serif;
+  padding-top: 10px;
+  text-align: justify;
+  padding-right: 250px;
+`;
+const BookHeading = styled.div`
+  font-size: 30px;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 600;
+`;
+const DetailContainer = styled.div`
+  padding-left: 5%;
+`;
 class BookDetail extends Component {
   constructor(props) {
     super(props);
@@ -37,9 +66,43 @@ class BookDetail extends Component {
   render() {
     console.log(this.state.data);
     return (
-      <Card loading={this.state.loading}>
-        <h1>{this.state.data.title}</h1>
-      </Card>
+      <div
+        style={{
+          padding: "4% 4%",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundImage: `url(https://images.template.net/wp-content/uploads/2014/10/pattern-background1.jpg)`
+        }}
+      >
+        <BodyContainer>
+          <BookImage>
+            <img
+              alt="example"
+              src={this.state.data.image_url}
+              style={{
+                width: "230px",
+                height: "300px"
+              }}
+            />
+          </BookImage>
+          <DetailContainer>
+            <BookHeading>{this.state.data.title}</BookHeading>
+            <AuthorName>
+              Author&nbsp;:&nbsp;&nbsp;{this.state.data.author}{" "}
+            </AuthorName>
+            <AuthorName>
+              Genre&nbsp;:&nbsp;&nbsp;{this.state.data.genres}{" "}
+            </AuthorName>
+            <AuthorName>
+              Pages&nbsp;:&nbsp;&nbsp;{this.state.data.pages}{" "}
+            </AuthorName>
+            <AuthorName>
+              Publisher&nbsp;:&nbsp;&nbsp;{this.state.data.publisher}{" "}
+            </AuthorName>
+            <BookDesc>{this.state.data.description}</BookDesc>
+          </DetailContainer>
+        </BodyContainer>
+      </div>
     );
   }
 }

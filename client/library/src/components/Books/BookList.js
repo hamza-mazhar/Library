@@ -45,7 +45,13 @@ class BookList extends Component {
   render() {
     const data = this.state.data;
     return (
-      <div style={{ background: "#ECECEC", padding: "30px" }}>
+      <div
+        style={{
+          background: "#ECECEC",
+          padding: "30px",
+          backgroundImage: `url(https://images.template.net/wp-content/uploads/2014/10/pattern-background1.jpg)`
+        }}
+      >
         <NewBookButton>
           <Link to="/newBook">
             <Button type="primary" icon="plus">

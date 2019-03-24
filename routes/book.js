@@ -53,6 +53,7 @@ router.post("/book", checkAuth, (req, res) => {
           author: req.body.author,
           publisher: req.body.publisher,
           pages: req.body.pages,
+          description: req.body.desc,
           image_url: req.body.image_url,
           buy_url: req.body.buy_url
         });
@@ -83,6 +84,7 @@ router.put("/book/:id", checkAuth, (req, res) => {
     genres: req.body.genres,
     author: req.body.author,
     publisher: req.body.publisher,
+    description: req.body.desc,
     pages: req.body.pages,
     image_url: req.body.image_url,
     buy_url: req.body.buy_url

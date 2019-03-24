@@ -27,7 +27,7 @@ class CreateBook extends Component {
             title: values.title,
             author: values.author,
             buy_url: values.buyUri,
-            description: values.desc,
+            desc: values.desc,
             genres: values.genre,
             image_url: values.imgUri,
             pages: values.pages,
