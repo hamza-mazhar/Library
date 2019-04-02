@@ -10,6 +10,9 @@
     "dev:server": "cd client &&  cd library && yarn build && cd .. && yarn start",
     "start": "nodemon index.js"
   },
+  "engines": {
+    "node": "10.11.0"
+  },
   "author": "Hamza",
   "license": "ISC",
   "dependencies": {
