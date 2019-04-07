@@ -56,7 +56,7 @@ class Navbar extends React.Component {
               <Oauth>Login</Oauth>
             </Menu.Item> */}
             <Menu.Item key="10">
-              <Link to="/Login">Login</Link>
+              <Link to="/login">Login</Link>
             </Menu.Item>
           </Menu>
         </Header>

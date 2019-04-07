@@ -5,6 +5,7 @@ import BookList from "./components/Books";
 import CreateBook from "./components/Books/CreateBook";
 import BookById from "./components/Books/BookDetail";
 import Login from "./components/Login";
+import RegisterForm from "./components/SignUp";
 function isUserLoggedIn() {
   return localStorage.getItem("login") === "true" ? true : false;
 }
@@ -18,6 +19,7 @@ class Router extends React.Component {
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={RegisterForm} />
         </Switch>
       );
     }

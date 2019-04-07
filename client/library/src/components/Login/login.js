@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, Card, Input, Icon, Checkbox, message } from "antd";
 import axios from "axios";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import "./login.css";
 import Background from "../images/loginForm.jpg";
 const LoginForm = styled.div``;
@@ -123,7 +124,7 @@ class login extends Component {
                 >
                   Log in
                 </Button>
-                Or <a href="">register now!</a>
+                Or <Link to="/register">register now!</Link>
               </Form.Item>
             </Form>
           </Card>
