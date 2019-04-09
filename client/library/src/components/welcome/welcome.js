@@ -71,7 +71,7 @@ class welcome extends Component {
         </Slider>
         <br />
         <br />
-        <Card
+        {/* <Card
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
           bordered={false}
         >
@@ -82,7 +82,7 @@ class welcome extends Component {
             they should be funny, exciting and wonderful; and learning to be a
             reader gives a terrific advantage.” – Roald Dahl
           </CardText>
-        </Card>
+        </Card> */}
         <br />
         <Card
           bordered={false}
