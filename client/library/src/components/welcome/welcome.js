@@ -80,7 +80,7 @@ class welcome extends Component {
             “I have a passion for teaching kids to become readers, to become
             comfortable with a book, not daunted. Books shouldn’t be daunting,
             they should be funny, exciting and wonderful; and learning to be a
-            reader gives a terrific advantage.” – Roald Dahl
+            reader gives a terrific advantage.” – Roald Dahly
           </CardText>
         </Card>
         <br />
