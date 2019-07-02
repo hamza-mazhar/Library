@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { message, Card, Button } from "antd";
 import axios from "axios";
 import styled from "styled-components";
+import ReactImageMagnify from "react-image-magnify";
 
 const BodyContainer = styled.div`
   display: flex;
@@ -76,12 +77,27 @@ class BookDetail extends Component {
       >
         <BodyContainer>
           <BookImage>
-            <img
+            {/* <img
               alt="example"
               src={this.state.data.image_url}
               style={{
                 width: "230px",
                 height: "300px"
+              }}
+            /> */}
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  alt: "Wristwatch by Ted Baker London",
+                  width: 230,
+                  height: 300,
+                  src: this.state.data.image_url
+                },
+                largeImage: {
+                  src: this.state.data.image_url,
+                  width: 400,
+                  height: 800
+                }
               }}
             />
           </BookImage>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Card, Row, Col, Button, message } from "antd";
+import { Card, Row, Col, Button, message, Spin } from "antd";
 import { Link } from "react-router-dom";
 const { Meta } = Card;
 
@@ -60,38 +60,40 @@ class BookList extends Component {
           </Link>
         </NewBookButton>
         <br />
-        <Row gutter={16}>
-          {data.map(item => {
-            return (
-              <Col
-                span={5}
-                style={{
-                  width: "16%",
-                  marginTop: "20px"
-                }}
-                key={`${item._id}`}
-              >
-                <Link to={`/book/${item._id}`}>
-                  <Card
-                    key={`${item._id}`}
-                    hoverable
-                    loading={this.state.loading}
-                    style={{ width: 210 }}
-                    cover={
-                      <img
-                        alt="example"
-                        src={item.image_url}
-                        style={{ height: 210, width: "100%" }}
-                      />
-                    }
-                  >
-                    <Meta title={item.title} description={item.genres} />
-                  </Card>
-                </Link>
-              </Col>
-            );
-          })}
-        </Row>
+        <Spin spinning={this.state.loading}>
+          <Row gutter={16}>
+            {data.map(item => {
+              return (
+                <Col
+                  span={5}
+                  style={{
+                    width: "16%",
+                    marginTop: "20px"
+                  }}
+                  key={`${item._id}`}
+                >
+                  <Link to={`/book/${item._id}`}>
+                    <Card
+                      key={`${item._id}`}
+                      hoverable
+                      loading={this.state.loading}
+                      style={{ width: 210 }}
+                      cover={
+                        <img
+                          alt="example"
+                          src={item.image_url}
+                          style={{ height: 210, width: "100%" }}
+                        />
+                      }
+                    >
+                      <Meta title={item.title} description={item.genres} />
+                    </Card>
+                  </Link>
+                </Col>
+              );
+            })}
+          </Row>
+        </Spin>
       </div>
     );
   }

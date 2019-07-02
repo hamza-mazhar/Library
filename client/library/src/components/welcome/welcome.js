@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Card } from "antd";
 import styled from "styled-components";
 import "./welcome.css";
-
+import videoBg from "./video/norwaybg.mp4";
 const CardText = styled.div`
   width: 600px;
   text-align: center;
@@ -39,6 +39,48 @@ class welcome extends Component {
     };
     return (
       <div>
+        <div>
+          <video
+            src={videoBg}
+            type="video/mp4"
+            autoPlay="true"
+            loop
+            muted={true}
+            style={{ width: "100%" }}
+          >
+            Here Comes Video
+          </video>
+
+          <div id="container">
+            What we believe in
+            <div id="flip">
+              <div>
+                <div> Analysis</div>
+              </div>
+              <div>
+                <div>Design and Development</div>
+              </div>
+              <div>
+                <div>Development and Maintenance</div>
+              </div>
+            </div>
+            We are Creative.
+          </div>
+        </div>
+        <br />
+        <Card
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          bordered={false}
+        >
+          <CardHeading>BOOKERS CLUB</CardHeading>
+          <CardText>
+            “I have a passion for teaching kids to become readers, to become
+            comfortable with a book, not daunted. Books shouldn’t be daunting,
+            they should be funny, exciting and wonderful; and learning to be a
+            reader gives a terrific advantage.” – Roald Dahl
+          </CardText>
+        </Card>
+        <br />
         <Slider {...settings}>
           <div>
             <img
@@ -83,6 +125,10 @@ class welcome extends Component {
             reader gives a terrific advantage.” – Roald Dahl
           </CardText>
         </Card>
+        {/* <video id="background-video" loop autoPlay>
+          <source src="https://youtu.be/-MKapbz0GIo" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video> */}
         <br />
         <Card
           bordered={false}
