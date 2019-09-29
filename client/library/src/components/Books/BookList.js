@@ -3,6 +3,9 @@ import axios from "axios";
 import styled from "styled-components";
 import { Card, Row, Col, Button, message, Spin, Switch } from "antd";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import fetchbooksAction from "./networkCall";
 const { Meta } = Card;
 
 const NewBookButton = styled.div`
@@ -18,28 +21,36 @@ class BookList extends Component {
       loading: true
     };
   }
+
+  componentWillMount() {
+    console.log(this.props);
+    console.log("++++++++++++++");
+    const { fetchBooks } = this.props;
+    fetchBooks();
+  }
+
   componentDidMount() {
     //console.log(localStorage.getItem("token"));
-    this.setState({ loading: true });
-    axios({
-      method: "get",
-      url: "/api/books",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        authorization: localStorage.getItem("token")
-      }
-    })
-      // .get("/api/books")
-      .then(response => {
-        if (response.data) {
-          this.setState({ data: response.data, loading: false });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        message.error("Login Again Your Access Token is Expire");
-        this.setState({ data: [], loading: false });
-      });
+    // this.setState({ loading: true });
+    // axios({
+    //   method: "get",
+    //   url: "/api/books",
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     authorization: localStorage.getItem("token")
+    //   }
+    // })
+    //   // .get("/api/books")
+    //   .then(response => {
+    //     if (response.data) {
+    //       this.setState({ data: response.data, loading: false });
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //     message.error("Login Again Your Access Token is Expire");
+    //     this.setState({ data: [], loading: false });
+    //   });
   }
 
   handleNewPage = url => {
@@ -48,7 +59,7 @@ class BookList extends Component {
   };
 
   render() {
-    const data = this.state.data;
+    const data = this.props.books.data;
     return (
       <div
         style={{
@@ -66,7 +77,7 @@ class BookList extends Component {
           </Link>
         </NewBookButton>
         <br />
-        <Spin spinning={this.state.loading}>
+        <Spin spinning={this.props.books.loading}>
           <Row gutter={16}>
             {data.map(item => {
               return (
@@ -84,7 +95,8 @@ class BookList extends Component {
                     hoverable
                     loading={this.state.loading}
                     onClick={() => this.handleNewPage(`/book/${item._id}`)}
-                    loading={this.state.loading}
+                    // loading={this.state.loading}
+                    loading={this.props.books.loading}
                     style={{ width: 210 }}
                     cover={
                       <img
@@ -107,4 +119,21 @@ class BookList extends Component {
   }
 }
 
-export default BookList;
+const mapStateToProps = state => ({
+  books: state.books
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchBooks: fetchbooksAction
+    },
+    dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BookList);
+
+// export default BookList;
