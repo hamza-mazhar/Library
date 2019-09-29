@@ -3,7 +3,9 @@ import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
 import Oauth from "../OAuth";
 import Logout from "../Logout/Logout";
+import "./cutomStyle.css";
 const { Header } = Layout;
+
 class Navbar extends React.Component {
   state = {
     email: "",
@@ -35,6 +37,9 @@ class Navbar extends React.Component {
             <Menu.Item key="11">
               <Logout>Logout</Logout>
             </Menu.Item>
+            <Menu.Item key="12">
+              <Link to="/redux">Redux</Link>
+            </Menu.Item>
           </Menu>
         </Header>
       </Layout>
@@ -57,6 +62,9 @@ class Navbar extends React.Component {
             </Menu.Item> */}
             <Menu.Item key="10">
               <Link to="/login">Login</Link>
+            </Menu.Item>
+            <Menu.Item key="13">
+              <Link to="/schedler">Scheduler</Link>
             </Menu.Item>
           </Menu>
         </Header>

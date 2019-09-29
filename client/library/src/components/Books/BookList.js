@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Card, Row, Col, Button, message, Spin } from "antd";
+import { Card, Row, Col, Button, message, Spin, Switch } from "antd";
 import { Link } from "react-router-dom";
 const { Meta } = Card;
 
@@ -31,16 +31,21 @@ class BookList extends Component {
     })
       // .get("/api/books")
       .then(response => {
-        //console.log(response);
         if (response.data) {
           this.setState({ data: response.data, loading: false });
         }
       })
       .catch(error => {
-        message.error("Something Went Wrong!");
+        console.log(error);
+        message.error("Login Again Your Access Token is Expire");
         this.setState({ data: [], loading: false });
       });
   }
+
+  handleNewPage = url => {
+    console.log(url);
+    window.open(url, "_blank");
+  };
 
   render() {
     const data = this.state.data;
@@ -49,6 +54,7 @@ class BookList extends Component {
         style={{
           background: "#ECECEC",
           padding: "30px",
+          paddingTop: "6%",
           backgroundImage: `url(https://images.template.net/wp-content/uploads/2014/10/pattern-background1.jpg)`
         }}
       >
@@ -72,23 +78,25 @@ class BookList extends Component {
                   }}
                   key={`${item._id}`}
                 >
-                  <Link to={`/book/${item._id}`}>
-                    <Card
-                      key={`${item._id}`}
-                      hoverable
-                      loading={this.state.loading}
-                      style={{ width: 210 }}
-                      cover={
-                        <img
-                          alt="example"
-                          src={item.image_url}
-                          style={{ height: 210, width: "100%" }}
-                        />
-                      }
-                    >
-                      <Meta title={item.title} description={item.genres} />
-                    </Card>
-                  </Link>
+                  {/* <Link to={`/book/${item._id}`}> */}
+                  <Card
+                    key={`${item._id}`}
+                    hoverable
+                    loading={this.state.loading}
+                    onClick={() => this.handleNewPage(`/book/${item._id}`)}
+                    loading={this.state.loading}
+                    style={{ width: 210 }}
+                    cover={
+                      <img
+                        alt="example"
+                        src={item.image_url}
+                        style={{ height: 210, width: "100%" }}
+                      />
+                    }
+                  >
+                    <Meta title={item.title} description={item.genres} />
+                  </Card>
+                  {/* </Link> */}
                 </Col>
               );
             })}

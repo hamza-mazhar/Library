@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var morgan = require("morgan");
 //graphql
 var graphqlHttp = require("express-graphql");
 var { buildSchema } = require("graphql");
@@ -20,6 +21,7 @@ const bookRoutes = require("./routes/book");
 var db = mongoose.connection;
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+app.use(morgan("dev"));
 //for user Api
 app.use("/user", userRoutes);
 app.use("/api", genreRoutes);
