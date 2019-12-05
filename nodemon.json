@@ -1,7 +1,0 @@
-{
-    "env":{
-        "MONGO_USER":"booklibrary",
-        "MONGO_PASSWORD":"hamza123",
-        "JWT_KEY":"secret"
-    }
-}
