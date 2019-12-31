@@ -11,6 +11,13 @@ class CreateBook extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    console.log("================");
+
+    console.log(localStorage.getItem("token"));
+    console.log("================");
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {

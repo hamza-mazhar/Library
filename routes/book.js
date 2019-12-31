@@ -6,7 +6,13 @@ const Book = require("../models/book");
 const checkAuth = require("../middleware/check-auth");
 //get all books /api/books
 router.get("/books", checkAuth, (req, res, next) => {
-  Book.find()
+  console.log("==================");
+  console.log(req.userData);
+
+  console.log(req.body);
+  console.log(req.headers.authorization);
+  console.log("==================");
+  Book.find({ user_id: req.userData.userId })
     .then(result => {
       res.send(result);
     })
@@ -38,6 +44,11 @@ router.get("/book/:id", checkAuth, (req, res) => {
 
 // create book
 router.post("/book", checkAuth, (req, res) => {
+  console.log("+++++++++++++++");
+  console.log(req.body);
+  console.log(req.userData);
+  console.log("+++++++++++++++");
+
   Book.find({ title: req.body.title })
     .exec()
     .then(genre => {
@@ -55,8 +66,10 @@ router.post("/book", checkAuth, (req, res) => {
           pages: req.body.pages,
           description: req.body.desc,
           image_url: req.body.image_url,
-          buy_url: req.body.buy_url
+          buy_url: req.body.buy_url,
+          user_id: req.userData.userId
         });
+        console.log("book object is =>", book);
         book
           .save()
           .then(result => {

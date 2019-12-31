@@ -8,6 +8,8 @@ import Login from "./components/Login";
 import RegisterForm from "./components/SignUp";
 import Redux from "./components/Redux";
 import Scheduler from "./components/Scheduler";
+import Forgot from "./components/Login/forgetPass";
+import NewPass from "./components/Login/newPass";
 function isUserLoggedIn() {
   return localStorage.getItem("login") === "true" ? true : false;
 }
@@ -22,6 +24,8 @@ class Router extends React.Component {
           <Route exact path="/" component={Welcome} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={RegisterForm} />
+          <Route exact path="/forgot" component={Forgot} />
+          <Route exact path="/newPass/:token" component={NewPass} />
           <Route exact path="/schedler" component={Scheduler} />
         </Switch>
       );

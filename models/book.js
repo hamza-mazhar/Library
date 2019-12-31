@@ -5,6 +5,10 @@ var bookSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  user_id: {
+    type: String,
+    required: true
+  },
   genres: {
     type: String,
     required: true

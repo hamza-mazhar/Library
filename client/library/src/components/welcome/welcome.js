@@ -8,6 +8,7 @@ import { Card } from "antd";
 import styled from "styled-components";
 import "./welcome.css";
 import videoBg from "./video/norwaybg.mp4";
+import mapAgeCleaner from "map-age-cleaner";
 const CardText = styled.div`
   width: 600px;
   text-align: center;
@@ -27,6 +28,22 @@ const CardHeading = styled.div`
 `;
 
 class welcome extends Component {
+  state = {
+    textTags: [
+      { key: "12123", label: "test" },
+      { key: "32131", label: "pizza" },
+      { key: "12354", label: "test" },
+      { key: "13541", label: "match" },
+      { key: "12312", label: "cricket" }
+    ]
+  };
+
+  handleTags = value => {
+    console.log("gettinng value from the selected tags", value);
+    let classTag = document.getElementsByClassName(value)[0];
+    classTag.style.display = "none";
+  };
+
   render() {
     const settings = {
       dots: true,
@@ -72,6 +89,18 @@ class welcome extends Component {
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
           bordered={false}
         >
+          {this.state.textTags.map(data => {
+            return (
+              <span
+                className={data.key}
+                onClick={() => {
+                  this.handleTags(data.key);
+                }}
+              >
+                {data.label}{" "}
+              </span>
+            );
+          })}
           <CardHeading>BOOKERS CLUB</CardHeading>
           <CardText>
             “I have a passion for teaching kids to become readers, to become

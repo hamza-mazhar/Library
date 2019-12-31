@@ -6,11 +6,24 @@ var morgan = require("morgan");
 //graphql
 var graphqlHttp = require("express-graphql");
 var { buildSchema } = require("graphql");
-
+const dotenv = require("dotenv");
+dotenv.config();
 const Event = require("./models/event");
 const User = require("./models/users");
 const bcrypt = require("bcrypt");
+var https = require("https");
+// var http = require("http");
+var fs = require("fs");
+var path = require("path");
+
 const events = [];
+
+// This line is from the Node.js HTTPS documentation.
+var options = {
+  key: fs.readFileSync(path.resolve("./security/server.key")),
+  cert: fs.readFileSync(path.resolve("./security/server.cert"))
+};
+
 Books = require("./models/book");
 
 //const checkAuth = require("./middleware/check-auth");
@@ -146,14 +159,27 @@ app.use(
 
 mongoose
   .connect(
-    `mongodb://Library:${process.env.MONGO_PASSWORD}@ds147125.mlab.com:47125/${
-      process.env.MONGO_USER
-    }`
+    `mongodb://Library:${process.env.MONGO_PASSWORD}@ds147125.mlab.com:47125/${process.env.MONGO_USER}`
   )
   .then(() => {
+    // https.createServer(options, app).listen(8080, () => {
+    //   console.log("App is listening at 8080");
+    // });
     app.listen(8080, () => {
       console.log("App is listening at 8080");
     });
+
+    // https
+    //   .createServer(
+    //     {
+    //       key: fs.readFileSync("./security/server.key"),
+    //       cert: fs.readFileSync("./security/server.cert")
+    //     },
+    //     app
+    //   )
+    //   .listen(8080, () => {
+    //     console.log("Listening...");
+    //   });
   })
   .catch(err => {
     console.log(err);

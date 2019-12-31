@@ -19,7 +19,17 @@ var UserSchema = mongoose.Schema({
       type: Schema.Types.ObjectId,
       ref: "Event"
     }
-  ]
+  ],
+  reset_password_token: {
+    type: String
+  },
+  reset_password_expires: {
+    type: Date
+  }
 });
+
+UserSchema.methods.comparePassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 module.exports = mongoose.model("User", UserSchema);

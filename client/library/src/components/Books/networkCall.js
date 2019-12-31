@@ -4,7 +4,7 @@ import {
   fetchBooksError
 } from "../../modules/Books/action";
 import axios from "axios";
-
+import { header } from "../../common/header";
 function fetchBooks() {
   return dispatch => {
     dispatch(fetchBooksPending());
@@ -12,8 +12,7 @@ function fetchBooks() {
       method: "get",
       url: "/api/books",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        authorization: localStorage.getItem("token")
+        ...header
       }
     })
       // .get("/api/books")
